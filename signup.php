@@ -118,3 +118,7 @@ session_start();
         </form>
     </body>
 </html>
+
+<?php 
+mysqli_close($dbconnection);
+?>
