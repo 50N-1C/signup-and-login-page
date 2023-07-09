@@ -4,8 +4,8 @@ if ($_SERVER["REQUEST_METHOD"]==="POST"){
     // open connection with database
     require_once("connection.php");
     
-    $email = $_POST["email"];
-    $password= $_POST["password"];
+    $email = mysqli_real_escape_string($dbconnection,htmlspecialchars($_POST["email"]));
+    $password= mysqli_real_escape_string($dbconnection,htmlspecialchars($_POST["password"]));
 
     //check from email and password to login
     $query = "SELECT `email`, `password` FROM `data` WHERE `email` = ' {$email} ' AND `password` = ' {$password} ';" ;
@@ -45,3 +45,7 @@ if ($_SERVER["REQUEST_METHOD"]==="POST"){
         </form>
     </body>
 </html>
+
+<?php 
+mysqli_close($dbconnection);
+?>
